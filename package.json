@@ -1,23 +1,24 @@
 {
   "name": "allen",
-  "description": "",
+  "description": "Utilities for the Web Audio API",
   "version": "0.1.0",
-  "homepage": "",
+  "main": "allen.js",
+  "homepage": "http://github.com/jsantell/allen",
   "author": {
-    "name": "",
-    "url": ""
+    "name": "Jordan Santell",
+    "url": "http://jsantell.com"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "http://github.com/jsantell/allen"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/jsantell/allen/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": ""
+      "url": "http://opensource.org/licenses/MIT"
     }
   ],
   "engines": {
@@ -28,6 +29,10 @@
     "grunt-contrib": "~ 0.2.0"
   },
   "keywords": [
-    ""
+    "allen",
+    "web audio api",
+    "audio",
+    "audiocontext",
+    "audionodes"
   ]
 }

@@ -1,8 +1,26 @@
 module.exports = function(grunt) {
   
   grunt.initConfig({
+    pkg: '<json:package.json>',
+    meta: {
+      banner: '/*\n * <%= pkg.name %> - v<%= pkg.version %> - ' +
+        '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+        '<%= pkg.homepage ? " * " + pkg.homepage + "\n" : "" %>' +
+        ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
+        ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %>\n */'
+    },
     mocha: { 
       all: [ 'test/index.html' ]
+    },
+    concat: {
+      dev: {
+        src: [ '<banner:meta.banner>', 'allen.js' ],
+        dest: 'allen.js'
+      },
+      prod: {
+        src: [ '<banner:meta.banner>', 'allen.min.js' ],
+        dest: 'allen.min.js'
+      }
     },
     coffee: {
       compile: {
@@ -29,7 +47,8 @@ module.exports = function(grunt) {
       scripts: {
         files: [
           'src/*',
-          'test/*'
+          'test/*.coffee',
+          'test/mocks/*.coffee'
         ],
         tasks: 'coffee mocha min'
       }
@@ -38,6 +57,6 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib');
   grunt.loadNpmTasks('grunt-mocha');
-  grunt.registerTask('default', 'coffee mocha min');
+  grunt.registerTask('default', 'coffee mocha min concat');
 
 };

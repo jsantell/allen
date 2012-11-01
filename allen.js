@@ -66,6 +66,14 @@
     return false;
   };
 
-  root.allen = allen;
+  if (typeof exports === 'object') {
+    module.exports = allen;
+  } else if (typeof define === 'function' && define.amd) {
+    define(function() {
+      return allen;
+    });
+  } else {
+    root.allen = allen;
+  }
 
 }).call(this);

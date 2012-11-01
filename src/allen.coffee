@@ -47,4 +47,10 @@ checkProtoChainFor = ( node, protoName ) ->
     return true if proto?.constructor?.name is protoName
   return false
 
-root.allen = allen
+# Export with Node, AMD, browser
+if typeof exports is 'object'
+  module.exports = allen
+else if typeof define is 'function' and define.amd
+  define( () -> allen )
+else
+  root.allen = allen
