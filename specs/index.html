@@ -1,0 +1,26 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>AudioNodePlus Test</title>
+	<link rel="stylesheet" href="lib/mocha/mocha.css" />
+</head>
+<body>
+	<div id="mocha"></div>
+	<script src="lib/chai/chai.js"></script>
+	<script src="lib/mocha/mocha.js"></script>
+	<script src="lib/sinon/lib/sinon.js"></script>
+	<script src="lib/sinon/lib/sinon/spy.js"></script>
+	<script>
+		mocha.setup('bdd');
+		should = chai.should();
+		expect = chai.expect;
+	</script>
+	<script src="../node_modules/grunt-mocha/tasks/mocha/mocha-helper.js"></script>
+
+	<script src="../audioNodePlus.js"></script>
+
+	<script src="builtTests.js"></script>
+	
+	<script>mocha.run();</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "name": "allen",
+  "description": "",
+  "version": "0.1.0",
+  "homepage": "",
+  "author": {
+    "name": "",
+    "url": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": ""
+    }
+  ],
+  "engines": {
+    "node": "*"
+  },
+  "devDependencies": {
+    "grunt-mocha": ">= 0.1.7",
+    "grunt-contrib": "~ 0.2.0"
+  },
+  "keywords": [
+    ""
+  ]
+}
