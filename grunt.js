@@ -2,10 +2,7 @@ module.exports = function(grunt) {
   
   grunt.initConfig({
     mocha: { 
-      specs: {
-        src: [ 'specs/index.html' ],
-        mocha: {}
-      }
+      all: [ 'test/index.html' ]
     },
     coffee: {
       compile: {
@@ -13,8 +10,11 @@ module.exports = function(grunt) {
           'allen.js' : [
             './src/allen.coffee'
           ],
-          'specs/builtTests.js' : [
-            './specs/*.coffee'
+          'test/builtTests.js' : [
+            './test/*.coffee'
+          ],
+          'test/mocks/mockContext.js' : [
+            './test/mocks/mockContext.coffee'
           ]
         }
       }
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
       scripts: {
         files: [
           'src/*',
-          'specs/*'
+          'test/*'
         ],
         tasks: 'coffee mocha min'
       }

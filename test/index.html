@@ -1,0 +1,37 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>AudioNodePlus Test</title>
+	<link rel="stylesheet" href="lib/mocha/mocha.css" />
+</head>
+<body>
+	<div id="mocha"></div>
+	<script src="lib/mocha/mocha.js"></script>
+	<script>
+		mocha.setup('bdd');
+	</script>
+
+	<script src="../node_modules/grunt-mocha/tasks/mocha/mocha-helper.js"></script>
+	
+	<script src="lib/chai/chai.js"></script>
+	<script>
+		var should = chai.should();
+		var expect = chai.expect;
+	</script>
+	<script src="../allen.js"></script>
+
+	<script src="builtTests.js"></script>
+	<script>
+		// Load mock AudioContext if testing in PhantomJS
+		if (navigator.userAgent.indexOf('PhantomJS') >= 0 ) {
+		//if (1) {
+			var s = document.createElement('script');
+			s.src = 'mocks/mockContext.js';
+			s.onload = function () { mocha.run(); };
+			document.getElementsByTagName('head')[0].appendChild(s);
+		} else {
+			mocha.run();
+		}
+	</script>
+</body>
+</html>

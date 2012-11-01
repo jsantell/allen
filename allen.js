@@ -1,15 +1,30 @@
 (function() {
-  var Allen;
+  var allen, checkCurrentProtoFor, checkProtoChainFor, root;
 
-  Allen = {
-    makeAudioContext: function() {
+  root = this;
+
+  allen = {
+    getAudioContext: function() {
       var ctx;
+      if (this.context != null) {
+        return this.context;
+      }
       ctx = root.AudioContext || root.webkitAudioContext;
-      return new ctx();
+      if (ctx) {
+        return this.context = new ctx();
+      } else {
+        return null;
+      }
+    },
+    setAudioContext: function(context) {
+      if (this.isAudioContext(context)) {
+        return this.context = context;
+      } else {
+        throw new Error('setAudioContext only accepts an AudioContext object');
+      }
     },
     isAudioContext: function(node) {
-      var _ref, _ref1;
-      return ((_ref = Object.getPrototypeOf(node)) != null ? (_ref1 = _ref.constructor) != null ? _ref1.name : void 0 : void 0) === 'AudioContext';
+      return checkCurrentProtoFor(node, 'AudioContext');
     },
     isAudioSource: function(node) {
       return checkProtoChainFor(node, 'AudioSourceNode');
@@ -18,19 +33,27 @@
       return checkProtoChainFor(node, 'AudioNode');
     },
     isAudioDestination: function(node) {
-      return checkProtoChainFor(node, 'AudioDestinationNode');
+      return checkCurrentProtoFor(node, 'AudioDestinationNode');
     },
     isRegularAudioNode: function(node) {
       return this.isAudioNode(node) && !this.isAudioDestination(node) && !this.isAudioSource(node);
     },
-    isAudioParam: function(node) {
-      return checkProtoChainFor(node, 'AudioParam');
+    isAudioParam: function(param) {
+      return checkProtoChainFor(param, 'AudioParam');
     }
   };
 
-  checkProtoChainFor(node, protoName)(function() {
+  checkCurrentProtoFor = function(node, protoName) {
+    var _ref, _ref1;
+    if (typeof node !== 'object' || !node) {
+      return false;
+    }
+    return ((_ref = Object.getPrototypeOf(node)) != null ? (_ref1 = _ref.constructor) != null ? _ref1.name : void 0 : void 0) === protoName;
+  };
+
+  checkProtoChainFor = function(node, protoName) {
     var proto, _ref, _ref1;
-    if (typeof node !== 'object') {
+    if (typeof node !== 'object' || !node) {
       return false;
     }
     proto = Object.getPrototypeOf(node);
@@ -41,6 +64,8 @@
       }
     }
     return false;
-  });
+  };
+
+  root.allen = allen;
 
 }).call(this);
