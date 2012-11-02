@@ -7,6 +7,13 @@ allen
 
 ## Installation
 
+Install via [npm](https://npmjs.org/), [bower](http://twitter.github.com/bower/) or [component\(1\)](https://github.com/component/component)
+
+```
+npm install allen
+bower install allen
+component install jsantell/allen
+```
 
 
 ## Methods
