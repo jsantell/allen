@@ -3,7 +3,6 @@
   "description": "Utilities for the Web Audio API",
   "version": "0.1.0",
   "main": "allen.js",
-  "dependencies": {},
   "repo": "jsantell/allen",
   "license": "MIT",
   "keywords": [
