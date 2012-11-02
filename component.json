@@ -5,6 +5,7 @@
   "main": "allen.js",
   "repo": "jsantell/allen",
   "license": "MIT",
+  "scripts": [ "allen.js" ],
   "keywords": [
     "allen",
     "web audio api",
