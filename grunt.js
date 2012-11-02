@@ -28,10 +28,10 @@ module.exports = function(grunt) {
           'allen.js' : [
             './src/allen.coffee'
           ],
-          'test/builtTests.js' : [
+          'test/build/specs.js' : [
             './test/*.coffee'
           ],
-          'test/mocks/mockContext.js' : [
+          'test/build/mockContext.js' : [
             './test/mocks/mockContext.coffee'
           ]
         }
@@ -57,6 +57,8 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib');
   grunt.loadNpmTasks('grunt-mocha');
-  grunt.registerTask('default', 'coffee mocha min concat');
+  grunt.registerTask('default', 'coffee min concat mocha');
+  grunt.registerTask('build', 'coffee min concat');
+  grunt.registerTask('test', 'mocha');
 
 };

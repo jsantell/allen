@@ -24,9 +24,14 @@
   "engines": {
     "node": "*"
   },
+  "scripts": {
+    "test" : "./node_modules/.bin/grunt test"
+  },
   "devDependencies": {
-    "grunt-mocha": ">= 0.1.7",
-    "grunt-contrib": "~ 0.2.0"
+    "grunt-mocha": "latest",
+    "grunt-contrib": "latest",
+    "grunt": "latest",
+    "mocha": "latest"
   },
   "keywords": [
     "allen",
