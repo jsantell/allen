@@ -1,6 +1,8 @@
 allen
 =====
 
+[![Build Status](https://travis-ci.org/jsantell/allen.png)](https://travis-ci.org/jsantell/allen)
+
 **allen** is a collection of utilities for the Web Audio API. As of right now, mostly type checking different objects to determine what kind of type of node an object is, but if you find yourself reusing the same methods when developing with the Web Audio API, please add them!
 
 ## Installation
