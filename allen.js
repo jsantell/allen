@@ -1,3 +1,9 @@
+/*
+ * allen - v0.1.0 - 2012-11-01
+ * http://github.com/jsantell/allen
+ * Copyright (c) 2012 Jordan Santell; Licensed MIT
+ */
+
 (function() {
   var allen, checkCurrentProtoFor, checkProtoChainFor, root;
 
