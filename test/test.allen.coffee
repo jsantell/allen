@@ -7,7 +7,7 @@ describe 'Audio Context', () ->
 
   describe 'getAudioContext', () ->
     it 'creates an appropriate AudioContext node if doesn\'t exist', () ->
-      ctx.constructor.name.should.equal('AudioContext')
+      allen.isAudioContext(ctx).should.be.true
     it 'returns the previous ctx if already exists', () ->
       allen.getAudioContext().should.equal(ctx)
 

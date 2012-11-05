@@ -11,7 +11,7 @@
     });
     describe('getAudioContext', function() {
       it('creates an appropriate AudioContext node if doesn\'t exist', function() {
-        return ctx.constructor.name.should.equal('AudioContext');
+        return allen.isAudioContext(ctx).should.be["true"];
       });
       return it('returns the previous ctx if already exists', function() {
         return allen.getAudioContext().should.equal(ctx);

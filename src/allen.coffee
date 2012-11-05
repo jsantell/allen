@@ -16,7 +16,7 @@ allen =
       throw new Error('setAudioContext only accepts an AudioContext object')
 
   isAudioContext: ( node ) ->
-    checkCurrentProtoFor node, 'AudioContext'
+    checkCurrentType node, 'AudioContext'
 
   isAudioSource: ( node ) ->
     checkProtoChainFor node, 'AudioSourceNode'
@@ -25,7 +25,7 @@ allen =
     checkProtoChainFor node, 'AudioNode'
 
   isAudioDestination: ( node ) ->
-    checkCurrentProtoFor node, 'AudioDestinationNode'
+    checkCurrentType node, 'AudioDestinationNode'
 
   isRegularAudioNode: ( node ) ->
     @isAudioNode( node ) and
@@ -35,17 +35,22 @@ allen =
   isAudioParam: ( param ) ->
     checkProtoChainFor param, 'AudioParam'
 
-checkCurrentProtoFor = ( node, protoName ) ->
+checkCurrentType = ( node, goalName ) ->
   return false if typeof node isnt 'object' or not node
-  Object.getPrototypeOf( node )?.constructor?.name is protoName
+  node?.constructor?.name is goalName or toStringMatch( node, goalName )
 
-checkProtoChainFor = ( node, protoName ) ->
+checkProtoChainFor = ( node, goalName ) ->
   return false if typeof node isnt 'object' or not node
-  proto = Object.getPrototypeOf( node )
-  while proto?.constructor?.name isnt 'Object'
-    proto = Object.getPrototypeOf( proto )
-    return true if proto?.constructor?.name is protoName
+  pType = Object.getPrototypeOf( node )
+
+  until pType is Object.getPrototypeOf {}
+    if pType?.constructor?.name is goalName or toStringMatch( pType, "#{goalName}Prototype" )
+      return true
+    pType = Object.getPrototypeOf( pType )
   return false
+
+toStringMatch = ( object, name ) ->
+  !!toString.call( object ).match new RegExp "^\\[object #{name}\\]$"
 
 # Export with Node, AMD, browser
 if typeof exports is 'object'

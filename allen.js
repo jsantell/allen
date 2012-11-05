@@ -1,11 +1,5 @@
-/*
- * allen - v0.1.0 - 2012-11-01
- * http://github.com/jsantell/allen
- * Copyright (c) 2012 Jordan Santell; Licensed MIT
- */
-
 (function() {
-  var allen, checkCurrentProtoFor, checkProtoChainFor, root;
+  var allen, checkCurrentType, checkProtoChainFor, root, toStringMatch;
 
   root = this;
 
@@ -30,7 +24,7 @@
       }
     },
     isAudioContext: function(node) {
-      return checkCurrentProtoFor(node, 'AudioContext');
+      return checkCurrentType(node, 'AudioContext');
     },
     isAudioSource: function(node) {
       return checkProtoChainFor(node, 'AudioSourceNode');
@@ -39,7 +33,7 @@
       return checkProtoChainFor(node, 'AudioNode');
     },
     isAudioDestination: function(node) {
-      return checkCurrentProtoFor(node, 'AudioDestinationNode');
+      return checkCurrentType(node, 'AudioDestinationNode');
     },
     isRegularAudioNode: function(node) {
       return this.isAudioNode(node) && !this.isAudioDestination(node) && !this.isAudioSource(node);
@@ -49,27 +43,31 @@
     }
   };
 
-  checkCurrentProtoFor = function(node, protoName) {
-    var _ref, _ref1;
+  checkCurrentType = function(node, goalName) {
+    var _ref;
     if (typeof node !== 'object' || !node) {
       return false;
     }
-    return ((_ref = Object.getPrototypeOf(node)) != null ? (_ref1 = _ref.constructor) != null ? _ref1.name : void 0 : void 0) === protoName;
+    return (node != null ? (_ref = node.constructor) != null ? _ref.name : void 0 : void 0) === goalName || toStringMatch(node, goalName);
   };
 
-  checkProtoChainFor = function(node, protoName) {
-    var proto, _ref, _ref1;
+  checkProtoChainFor = function(node, goalName) {
+    var pType, _ref;
     if (typeof node !== 'object' || !node) {
       return false;
     }
-    proto = Object.getPrototypeOf(node);
-    while ((proto != null ? (_ref1 = proto.constructor) != null ? _ref1.name : void 0 : void 0) !== 'Object') {
-      proto = Object.getPrototypeOf(proto);
-      if ((proto != null ? (_ref = proto.constructor) != null ? _ref.name : void 0 : void 0) === protoName) {
+    pType = Object.getPrototypeOf(node);
+    while (pType !== Object.getPrototypeOf({})) {
+      if ((pType != null ? (_ref = pType.constructor) != null ? _ref.name : void 0 : void 0) === goalName || toStringMatch(pType, "" + goalName + "Prototype")) {
         return true;
       }
+      pType = Object.getPrototypeOf(pType);
     }
     return false;
+  };
+
+  toStringMatch = function(object, name) {
+    return !!toString.call(object).match(new RegExp("^\\[object " + name + "\\]$"));
   };
 
   if (typeof exports === 'object') {
