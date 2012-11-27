@@ -3,7 +3,7 @@ allen =
 
   getAudioContext: () ->
     return @context if @context?
-    ctx = root.AudioContext or root.webkitAudioContext
+    ctx = root.AudioContext or root.webkitAudioContext or root.mozAudioContext
     if ctx
       @context = new ctx()
     else
@@ -34,6 +34,14 @@ allen =
 
   isAudioParam: ( param ) ->
     checkProtoChainFor param, 'AudioParam'
+
+  getBuffer: ( url, callback, sendImmediately = true ) ->
+    xhr = new XMLHttpRequest()
+    xhr.open 'GET', url, true
+    xhr.responseType = 'arraybuffer'
+    xhr.onload = callback
+    xhr.send() if sendImmediately
+    xhr
 
 checkCurrentType = ( node, goalName ) ->
   return false if typeof node isnt 'object' or not node

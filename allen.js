@@ -1,3 +1,9 @@
+/*
+ * allen - v0.1.1 - 2012-11-27
+ * http://github.com/jsantell/allen
+ * Copyright (c) 2012 Jordan Santell; Licensed MIT
+ */
+
 (function() {
   var allen, checkCurrentType, checkProtoChainFor, root, toStringMatch;
 
@@ -9,7 +15,7 @@
       if (this.context != null) {
         return this.context;
       }
-      ctx = root.AudioContext || root.webkitAudioContext;
+      ctx = root.AudioContext || root.webkitAudioContext || root.mozAudioContext;
       if (ctx) {
         return this.context = new ctx();
       } else {
@@ -40,6 +46,20 @@
     },
     isAudioParam: function(param) {
       return checkProtoChainFor(param, 'AudioParam');
+    },
+    getBuffer: function(url, callback, sendImmediately) {
+      var xhr;
+      if (sendImmediately == null) {
+        sendImmediately = true;
+      }
+      xhr = new XMLHttpRequest();
+      xhr.open('GET', url, true);
+      xhr.responseType = 'arraybuffer';
+      xhr.onload = callback;
+      if (sendImmediately) {
+        xhr.send();
+      }
+      return xhr;
     }
   };
 
