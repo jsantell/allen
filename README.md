@@ -50,6 +50,10 @@ Returns `true` if `node` inherits from `AudioNode`, and is not a source or desti
 
 Returns `true` if `param` inherits from `AudioParam`; `false` otherwise.
 
+### getBuffer( url, callback, [sendImmediately] )
+
+Sets up an XHR GET to the `url`, sets responseType to 'arraybuffer', and calls `callback` on load. If `sendImmediately` truthy, calls `send()` on the xhr object. Returns the xhr object. Used commonly with the Web Audio API.
+
 ## Example
 
 ```
