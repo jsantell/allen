@@ -64,6 +64,6 @@ toStringMatch = ( object, name ) ->
 if typeof exports is 'object'
   module.exports = allen
 else if typeof define is 'function' and define.amd
-  define( () -> allen )
+  define( 'allen', () -> allen )
 else
   root.allen = allen

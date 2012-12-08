@@ -1,7 +1,7 @@
 {
   "name": "allen",
   "description": "Utilities for the Web Audio API",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "allen.js",
   "homepage": "http://github.com/jsantell/allen",
   "author": {

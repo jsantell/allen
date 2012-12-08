@@ -1,5 +1,5 @@
 /*
- * allen - v0.1.1 - 2012-11-27
+ * allen - v0.1.1 - 2012-12-08
  * http://github.com/jsantell/allen
  * Copyright (c) 2012 Jordan Santell; Licensed MIT
  */
@@ -93,7 +93,7 @@
   if (typeof exports === 'object') {
     module.exports = allen;
   } else if (typeof define === 'function' && define.amd) {
-    define(function() {
+    define('allen', function() {
       return allen;
     });
   } else {
