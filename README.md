@@ -11,8 +11,8 @@ Install via [npm](https://npmjs.org/), [bower](http://twitter.github.com/bower/)
 
 ```
 npm install allen
-bower install allen
 component install jsantell/allen
+bower install allen
 ```
 
 
@@ -72,6 +72,6 @@ Sets up an XHR GET to the `url`, sets responseType to 'arraybuffer', and calls `
 
 ## Development
 
-You must have [grunt](https://github.com/gruntjs/grunt) installed globally -- build `src` and specs and run tests with `grunt`, or fire off the watcher with `grunt watch` to build and test changes.
+Init and update git submodules and install [grunt](https://github.com/gruntjs/grunt) installed globally -- build `src` and specs and run tests with `grunt`, or fire off the watcher with `grunt watch` to build and test changes.
 
 Run tests with `grunt mocha`. In `test/mocks/mockContext.coffee`, there is a mock AudioContext object for running tests headlessly -- tests should pass in PhantomJS, as well as browsers.
