@@ -10,10 +10,10 @@ allen =
       null
 
   setAudioContext: ( context ) ->
-    if @isAudioContext( context )
+    if @isAudioContext context
       @context = context
     else
-      throw new Error('setAudioContext only accepts an AudioContext object')
+      throw new Error 'setAudioContext only accepts an AudioContext object'
 
   isAudioContext: ( node ) ->
     checkCurrentType node, 'AudioContext'
@@ -45,16 +45,16 @@ allen =
 
 checkCurrentType = ( node, goalName ) ->
   return false if typeof node isnt 'object' or not node
-  node?.constructor?.name is goalName or toStringMatch( node, goalName )
+  node?.constructor?.name is goalName or toStringMatch node, goalName
 
 checkProtoChainFor = ( node, goalName ) ->
   return false if typeof node isnt 'object' or not node
-  pType = Object.getPrototypeOf( node )
+  pType = Object.getPrototypeOf node
 
   until pType is Object.getPrototypeOf {}
-    if pType?.constructor?.name is goalName or toStringMatch( pType, "#{goalName}Prototype" )
+    if pType?.constructor?.name is goalName or toStringMatch pType, "#{goalName}Prototype"
       return true
-    pType = Object.getPrototypeOf( pType )
+    pType = Object.getPrototypeOf pType
   return false
 
 toStringMatch = ( object, name ) ->
@@ -64,6 +64,6 @@ toStringMatch = ( object, name ) ->
 if typeof exports is 'object'
   module.exports = allen
 else if typeof define is 'function' and define.amd
-  define( 'allen', () -> allen )
+  define 'allen', () -> allen
 else
   root.allen = allen
