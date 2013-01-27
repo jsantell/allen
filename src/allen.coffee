@@ -1,4 +1,5 @@
 root = @
+audioEl = @document and document.createElement 'audio'
 allen =
 
   getAudioContext: () ->
@@ -42,6 +43,24 @@ allen =
     xhr.onload = callback
     xhr.send() if sendImmediately
     xhr
+
+  canPlayType: ( type ) ->
+    codec = CODECS[ (type or '').toLowerCase() ]
+    if type is 'm4a'
+      canPlay( codec ) or canPlay( 'audio/aac;' )
+    else
+      canPlay( codec )
+
+CODECS = 
+  'mp3' : 'audio/mpeg;'
+  'ogg' : 'audio/ogg; codecs="vorbis"'
+  'wav' : 'audio/wav; codecs="1"'
+  'm4a' : 'audio/x-m4a;'
+
+canPlay = ( codec ) ->
+  !!(audioEl and
+    audioEl.canPlayType and
+    audioEl.canPlayType( codec ).replace /no/, '')
 
 checkCurrentType = ( node, goalName ) ->
   return false if typeof node isnt 'object' or not node

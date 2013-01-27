@@ -130,3 +130,18 @@ describe 'Type checking', () ->
         allen.isAudioParam( node ).should.be.false
       allen.isAudioParam( ctx ).should.be.false
       allen.isAudioParam( ctx.destination ).should.be.false
+
+describe 'canPlayType', () ->
+  it 'matches the browser\'s mp3 capability', () ->
+    allen.canPlayType( 'mp3' ).should.equal( !!(mediaElement.canPlayType and
+      mediaElement.canPlayType('audio/mpeg;')) )
+  it 'matches the browser\'s ogg capability', () ->
+    allen.canPlayType( 'ogg' ).should.equal( !!(mediaElement.canPlayType and
+      mediaElement.canPlayType('audio/ogg; codecs="vorbis"')) )
+  it 'matches the browser\'s wav capability', () ->
+    allen.canPlayType( 'wav' ).should.equal( !!(mediaElement.canPlayType and
+      mediaElement.canPlayType('audio/wav; codecs="1"')) )
+  it 'matches the browser\'s aac capability', () ->
+    allen.canPlayType( 'm4a' ).should.equal( !!(mediaElement.canPlayType and
+      mediaElement.canPlayType('audio/aac;')) or !!(mediaElement.canPlayType and
+      mediaElement.canPlayType('audio/x-m4a;')) )

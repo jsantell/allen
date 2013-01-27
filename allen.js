@@ -1,13 +1,15 @@
 /*
- * allen - v0.1.5 - 2013-01-26
+ * allen - v0.1.5 - 2013-01-27
  * http://github.com/jsantell/allen
  * Copyright (c) 2013 Jordan Santell; Licensed MIT
  */
 
 (function() {
-  var allen, checkCurrentType, checkProtoChainFor, root, toStringMatch;
+  var CODECS, allen, audioEl, canPlay, checkCurrentType, checkProtoChainFor, root, toStringMatch;
 
   root = this;
+
+  audioEl = this.document && document.createElement('audio');
 
   allen = {
     getAudioContext: function() {
@@ -60,7 +62,27 @@
         xhr.send();
       }
       return xhr;
+    },
+    canPlayType: function(type) {
+      var codec;
+      codec = CODECS[(type || '').toLowerCase()];
+      if (type === 'm4a') {
+        return canPlay(codec) || canPlay('audio/aac;');
+      } else {
+        return canPlay(codec);
+      }
     }
+  };
+
+  CODECS = {
+    'mp3': 'audio/mpeg;',
+    'ogg': 'audio/ogg; codecs="vorbis"',
+    'wav': 'audio/wav; codecs="1"',
+    'm4a': 'audio/x-m4a;'
+  };
+
+  canPlay = function(codec) {
+    return !!(audioEl && audioEl.canPlayType && audioEl.canPlayType(codec).replace(/no/, ''));
   };
 
   checkCurrentType = function(node, goalName) {

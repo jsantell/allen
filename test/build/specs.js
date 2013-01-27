@@ -185,4 +185,19 @@
     });
   });
 
+  describe('canPlayType', function() {
+    it('matches the browser\'s mp3 capability', function() {
+      return allen.canPlayType('mp3').should.equal(!!(mediaElement.canPlayType && mediaElement.canPlayType('audio/mpeg;')));
+    });
+    it('matches the browser\'s ogg capability', function() {
+      return allen.canPlayType('ogg').should.equal(!!(mediaElement.canPlayType && mediaElement.canPlayType('audio/ogg; codecs="vorbis"')));
+    });
+    it('matches the browser\'s wav capability', function() {
+      return allen.canPlayType('wav').should.equal(!!(mediaElement.canPlayType && mediaElement.canPlayType('audio/wav; codecs="1"')));
+    });
+    return it('matches the browser\'s aac capability', function() {
+      return allen.canPlayType('m4a').should.equal(!!(mediaElement.canPlayType && mediaElement.canPlayType('audio/aac;')) || !!(mediaElement.canPlayType && mediaElement.canPlayType('audio/x-m4a;')));
+    });
+  });
+
 }).call(this);

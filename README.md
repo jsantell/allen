@@ -53,6 +53,10 @@ Returns `true` if `param` inherits from `AudioParam`; `false` otherwise.
 
 Sets up an XHR GET to the `url`, sets responseType to 'arraybuffer', and calls `callback` on load. If `sendImmediately` truthy, calls `send()` on the xhr object. Returns the xhr object. Used commonly with the Web Audio API.
 
+### canPlayType( type )
+
+Checks if the browser can play audio of `type`. Strings accepted: `'ogg'`, `'mp3'`, `'wav'`, `'m4a'`
+
 ## Example
 
 ```
