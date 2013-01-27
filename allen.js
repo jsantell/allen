@@ -1,5 +1,5 @@
 /*
- * allen - v0.1.3 - 2013-01-14
+ * allen - v0.1.4 - 2013-01-26
  * http://github.com/jsantell/allen
  * Copyright (c) 2013 Jordan Santell; Licensed MIT
  */

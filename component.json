@@ -1,8 +1,8 @@
 {
   "name": "allen",
   "description": "Utilities for the Web Audio API",
-  "version": "0.1.3",
-  "main": "allen.js",
+  "version": "0.1.4",
+  "main": "index.js",
   "repo": "jsantell/allen",
   "license": "MIT",
   "scripts": [ "allen.js" ],
