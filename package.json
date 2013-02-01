@@ -1,7 +1,7 @@
 {
   "name": "allen",
   "description": "Utilities for the Web Audio API",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "main": "allen.js",
   "homepage": "http://github.com/jsantell/allen",
   "author": {
@@ -28,9 +28,9 @@
     "test" : "./node_modules/.bin/grunt test"
   },
   "devDependencies": {
-    "grunt-mocha": "latest",
-    "grunt-contrib": "latest",
-    "grunt": "latest",
+    "grunt-mocha": "0.1.x",
+    "grunt-contrib": "0.3.x",
+    "grunt": "0.3.x",
     "mocha": "latest"
   },
   "keywords": [
